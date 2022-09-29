@@ -25,7 +25,7 @@ local options = {
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   tabstop = 2,                             -- insert 2 spaces for a tab
   cursorline = true,                       -- highlight the current line
-  cursorcolumn = true,                     -- highlight the current column
+  -- cursorcolumn = true,                     -- highlight the current column
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
@@ -33,8 +33,8 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  -- guifont = "Monaco:h15",               -- the font used in graphical neovim applications
-  guifont = "Hack NF:h15",
+  guifont = "Monaco:h15",               -- the font used in graphical neovim applications
+  -- guifont = "monospace:h17",
 }
 
 vim.opt.shortmess:append "c"
@@ -50,10 +50,10 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 -- allowing all key combinations contain logo key
 -- (also known as super key, command key or windows key ) to be forwarded to neovim
 vim.g["neovide_input_use_logo"] = true 
-vim.g["neovide_cursor_animation_length"] = 0
+vim.g["neovide_cursor_animation_length"] = 0.02
 
 -- emmet setting for react
-vim.g["user_emmet_leader_key"]="<C-j>"
+vim.g["user_emmet_leader_key"]="<C-t>"
 vim.g["user_emmet_settings"] = {
    javascriptreact = {
     extends= "jsx"

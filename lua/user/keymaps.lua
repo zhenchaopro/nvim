@@ -20,11 +20,12 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<leader>wc", ":close<cr>", opts)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<leader>0", ":close<cr>", opts)
+keymap("n", "<leader>3", ":sp<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -78,17 +79,25 @@ keymap("n", "<Leader><Leader>", ":Telescope find_files<CR>", opts)
 keymap("n", "<C-g>", ":<ESC>:noh<CR>", opts)
 
 -- open config path
-keymap("n", "<Leader>fp", ":e ~/.config/nvim/init.lua<CR>", {})
+keymap("n", "<Leader>fp", ":lua require('telescope.builtin').find_files({ cwd = '~/.config/nvim/' })<CR>", {})
 
 keymap("v", "<Leader>*", ":Telescope grep_string<CR>", {})
 keymap("n", "<Leader>*", ":Telescope grep_string<CR>", {})
 
 keymap("n", "gl", ":HopLine<CR>", {})
 keymap("n", "<leader>/", ":HopChar1<CR>", {})
+keymap("n", "<C-j>", ":HopChar1<CR>", {})
+
 keymap("n", "<Leader>sh", ":split<CR>", {})
 keymap("n", "<Leader>sv", ":vs<CR>", {})
 
 keymap("n", "<Leader>,", ":lua require('telescope.builtin').buffers({ sort_mru = true })<cr>", {})
+keymap(
+	"n",
+	"<leader>.",
+	":lua require('telescope').extensions.file_browser.file_browser({cwd = vim.fn.expand('%:p:h')})<CR>",
+	{}
+)
 keymap("n", "<Leader>sp", ":Telescope live_grep<CR>", {})
 
 -- System clipboard integration
@@ -100,8 +109,7 @@ keymap("i", "<D-v>", "<C-r>+", {})
 keymap("n", "<leader>gg", ":Git<cr>", opts)
 -- close current buffer
 keymap("n", "<leader>bd", ":bp<bar>sp<bar>bn<bar>bd<cr>", opts)
-keymap("n", "<D-k>", ":bp<bar>sp<bar>bn<bar>bd<cr>", opts)
-keymap("n", "<D-f>", ":Telescope current_buffer_fuzzy_find", opts)
+keymap("n", "<leader>ss", ":Telescope current_buffer_fuzzy_find<cr>", opts)
 
 keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
 
@@ -109,3 +117,13 @@ keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
 keymap("n", "<Leader>vp", ":VimuxPromptCommand<CR>", opts)
 keymap("n", "<Leader>vl", ":VimuxRunLastCommand<CR>", opts)
 keymap("n", "<Leader>vq", ":VimuxCloseRunner<CR>", opts)
+
+-- quit
+keymap('n', "<Leader>zz", ':qa!<CR>', opts)
+
+-- file outline
+keymap('n', "<Leader>si", ':Telescope aerial<CR>', opts)
+
+-- format json
+keymap("n", "<Leader>bjj", ":%!python -m json.tool<CR> :set filetype=json<CR>", opts)
+keymap("n", "<Leader>bN", ":tabnew<CR>", opts)

@@ -30,7 +30,7 @@ vim.cmd [[
   augroup end
 
   augroup _react 
-    autocmd BufEnter,BufNew *.js set filetype=javascriptreact
+    autocmd BufEnter *.js set filetype=javascriptreact
   augroup end
 ]]
 
@@ -39,3 +39,4 @@ vim.cmd [[
 --   autocmd!
 --   autocmd BufWritePre * lua vim.lsp.buf.formatting()
 -- augroup end
+

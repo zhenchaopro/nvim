@@ -72,18 +72,37 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
-		lualine_b = { mode },
+		lualine_a = {
+      {
+      'filename',
+        file_status = true,
+        path = 1
+      }
+    },
+		lualine_b = { 'mode' },
 		lualine_c = {},
-		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { progress },
+		lualine_x = { 'diff', 'spaces', 'filetype' },
+		lualine_y = { 'location' },
+		lualine_z = { 'branch', 'diagnostics' },
+
+		-- lualine_a = { branch, diagnostics },
+		-- lualine_b = { mode },
+		-- lualine_c = {},
+		-- -- lualine_x = { "encoding", "fileformat", "filetype" },
+		-- lualine_x = { diff, spaces, "encoding", filetype },
+		-- lualine_y = { location },
+		-- lualine_z = { progress },
 	},
 	inactive_sections = {
-		lualine_a = {},
+		lualine_a = {
+      {
+      'filename',
+        file_status = true,
+        path = 1
+      }
+    },
 		lualine_b = {},
-		lualine_c = { "filename" },
+		lualine_c = {},
 		lualine_x = { "location" },
 		lualine_y = {},
 		lualine_z = {},

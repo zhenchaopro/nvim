@@ -47,7 +47,52 @@ return packer.startup(function(use)
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
 	use("kyazdani42/nvim-web-devicons")
-	use("kyazdani42/nvim-tree.lua")
+	use({
+		"kyazdani42/nvim-tree.lua",
+		config = function()
+			require("nvim-tree").setup({
+				view = {
+					mappings = {
+						list = {
+							{ key = { "<CR>", "o", "<1-LeftMouse>" }, action = "edit_no_picker" },
+							{ key = { "O" }, action = "edit" },
+							{ key = { "<2-RightMouse>", "<C-]>" }, action = "cd" },
+							{ key = "<C-v>", action = "vsplit" },
+							{ key = "<C-x>", action = "split" },
+							{ key = "<C-t>", action = "tabnew" },
+							{ key = "<", action = "prev_sibling" },
+							{ key = ">", action = "next_sibling" },
+							{ key = "P", action = "parent_node" },
+							{ key = "<BS>", action = "close_node" },
+							{ key = "<Tab>", action = "preview" },
+							{ key = "K", action = "first_sibling" },
+							{ key = "J", action = "last_sibling" },
+							{ key = "I", action = "toggle_ignored" },
+							{ key = "H", action = "toggle_dotfiles" },
+							{ key = "R", action = "refresh" },
+							{ key = "a", action = "create" },
+							{ key = "d", action = "remove" },
+							{ key = "D", action = "trash" },
+							{ key = "r", action = "rename" },
+							{ key = "<C-r>", action = "full_rename" },
+							{ key = "x", action = "cut" },
+							{ key = "c", action = "copy" },
+							{ key = "p", action = "paste" },
+							{ key = "y", action = "copy_name" },
+							{ key = "Y", action = "copy_path" },
+							{ key = "gy", action = "copy_absolute_path" },
+							{ key = "[c", action = "prev_git_item" },
+							{ key = "]c", action = "next_git_item" },
+							{ key = "-", action = "dir_up" },
+							{ key = "s", action = "system_open" },
+							{ key = "q", action = "close" },
+							{ key = "g?", action = "toggle_help" },
+						},
+					},
+				},
+			})
+		end,
+	})
 	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
@@ -61,6 +106,7 @@ return packer.startup(function(use)
 	use({
 		"phaazon/hop.nvim",
 		as = "hop",
+		branch = "v1", -- optional but strongly recommended
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require("hop").setup({ keys = "etovxqpdgfblzhckisuran" })
@@ -72,7 +118,8 @@ return packer.startup(function(use)
 	use("tomasr/molokai")
 	use("lunarvim/darkplus.nvim")
 	use("EdenEast/nightfox.nvim")
-	use("ellisonleao/gruvbox.nvim")
+	-- use("ellisonleao/gruvbox.nvim")
+	use("morhetz/gruvbox")
 	use("dracula/vim")
 
 	-- cmp plugins
@@ -82,6 +129,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+	use("onsails/lspkind-nvim")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -93,13 +141,16 @@ return packer.startup(function(use)
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
-	-- Telescope
-	use("nvim-telescope/telescope.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		commit = "559f2e7568f04872004fb793889e0cf55249abe4",
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
@@ -122,6 +173,13 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use({
+		"nvim-telescope/telescope-file-browser.nvim",
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	})
+
 	-- Cursorhold fix
 	use({
 		"antoinemadec/FixCursorHold.nvim",
@@ -139,6 +197,35 @@ return packer.startup(function(use)
 		-- 	require("configs.neoscroll").config()
 		-- end,
 		-- disable = not config.enabled.neoscroll,
+	})
+
+	use("stefandtw/quickfix-reflector.vim")
+	use("simrat39/symbols-outline.nvim")
+
+	use({ "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" } })
+
+	use({
+		"stevearc/aerial.nvim",
+		config = function()
+			require("telescope").load_extension("aerial")
+			require("aerial").setup({
+				backends = { "treesitter", "lsp", "markdown" },
+				filter_kind = {
+					"Class",
+					"Constructor",
+					"Enum",
+					"Function",
+					"Interface",
+					"Module",
+					"Method",
+					"Struct",
+				},
+
+				on_attach = function(bufnr)
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>a", "<cmd>AerialToggle!<CR>", {})
+				end,
+			})
+		end,
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
