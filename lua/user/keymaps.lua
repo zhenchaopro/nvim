@@ -125,5 +125,5 @@ keymap('n', "<Leader>zz", ':qa!<CR>', opts)
 keymap('n', "<Leader>si", ':Telescope aerial<CR>', opts)
 
 -- format json
-keymap("n", "<Leader>bjj", ":%!python -m json.tool<CR> :set filetype=json<CR>", opts)
+keymap("n", "<Leader>bjj", ":%!python3 -m json.tool<CR> :set filetype=json<CR>", opts)
 keymap("n", "<Leader>bN", ":tabnew<CR>", opts)

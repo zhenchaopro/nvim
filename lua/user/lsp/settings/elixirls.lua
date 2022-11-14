@@ -4,7 +4,7 @@ local lspconfig = require("lspconfig")
 -- capabilities we send to the language server to let them know we want snippets.
 --local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(_, bufnr)
 	local opts = { noremap = true, silent = true }
@@ -22,7 +22,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
 	-- tell nvim-cmp about our desired capabilities
-	require("cmp_nvim_lsp").update_capabilities(capabilities)
+	require("cmp_nvim_lsp").default_capabilities(capabilities)
 end
 
 -- local path_to_elixirls = vim.fn.expand("~/github.com/elixir-ls/release/language_server.sh")
