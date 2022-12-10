@@ -54,8 +54,6 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		-- ["<C-k>"] = cmp.mapping.select_prev_item(),
-		-- ["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if luasnip.expandable then
 				luasnip.expand()
@@ -76,11 +74,11 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.expandable() then
-				luasnip.expand()
-			elseif cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+			-- if luasnip.expandable() then
+			-- 	luasnip.expand()
+			-- elseif cmp.visible() then
+			-- 	cmp.select_next_item()
+			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()

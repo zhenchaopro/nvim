@@ -48,7 +48,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
-	use("kyazdani42/nvim-web-devicons")
+	-- use("kyazdani42/nvim-web-devicons")
 	use({
 		"kyazdani42/nvim-tree.lua",
 		config = function()
@@ -129,12 +129,12 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
 	use("onsails/lspkind-nvim")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
+	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	-- LSP
@@ -229,6 +229,8 @@ return packer.startup(function(use)
 			})
 		end,
 	})
+
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

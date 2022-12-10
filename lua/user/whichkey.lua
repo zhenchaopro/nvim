@@ -96,7 +96,7 @@ local mappings = {
 
   b = {
     name = "Buffer",
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
   },
 
   f = {

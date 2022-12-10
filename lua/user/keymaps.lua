@@ -1,5 +1,4 @@
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 -- Shorten function name
@@ -18,13 +17,14 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
+keymap("i", "<C-g>", "<ESC>", opts)
+keymap("c", "<C-g>", "<ESC>", opts)
+keymap("t", "<C-g>", "<ESC>", opts)
+
 -- Normal --
--- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", opts)
--- keymap("n", "<C-j>", "<C-w>j", opts)
--- keymap("n", "<C-k>", "<C-w>k", opts)
--- keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>0", ":close<cr>", opts)
+keymap("n", "<leader>1", "<C-w>o<cr>", opts)
+keymap("n", "<leader>2", ":vs", opts)
 keymap("n", "<leader>3", ":sp<cr>", opts)
 
 -- Resize with arrows
@@ -36,10 +36,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
-
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -56,9 +52,9 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
+--[[ keymap("v", "<A-j>", ":m .+1<CR>==", opts) ]]
+--[[ keymap("v", "<A-k>", ":m .-2<CR>==", opts) ]]
+--[[ keymap("v", "p", '"_dP', opts) ]]
 
 -- Visual Block --
 -- Move text up and down
@@ -66,13 +62,8 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("n", "<Leader>m", "<Cmd>lua require('maximize').toggle()<CR>", opts)
 
--- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)vim.api.nvim_set_keymap
 
 keymap("n", "<Leader>pp", ":Telescope projects<CR>", opts)
 keymap("n", "<Leader><Leader>", ":Telescope find_files<CR>", opts)
@@ -85,8 +76,7 @@ keymap("v", "<Leader>*", ":Telescope grep_string<CR>", {})
 keymap("n", "<Leader>*", ":Telescope grep_string<CR>", {})
 
 keymap("n", "gl", ":HopLine<CR>", {})
-keymap("n", "<leader>/", ":HopChar1<CR>", {})
-keymap("n", "<C-j>", ":HopChar1<CR>", {})
+--[[ keymap("n", ";", ":HopChar1<CR>", {}) ]]
 
 keymap("n", "<Leader>sh", ":split<CR>", {})
 keymap("n", "<Leader>sv", ":vs<CR>", {})
@@ -112,6 +102,10 @@ keymap("n", "<leader>bd", ":bp<bar>sp<bar>bn<bar>bd<cr>", opts)
 keymap("n", "<leader>ss", ":Telescope current_buffer_fuzzy_find<cr>", opts)
 
 keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
+keymap("n", "<Leader>n", ":NvimTreeToggle<cr>", opts)
+
+-- keymap
+keymap('n', "/", "<Plug>(easymotion-sn)", opts)
 
 -- todo
 keymap("n", "<Leader>vp", ":VimuxPromptCommand<CR>", opts)
