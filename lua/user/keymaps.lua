@@ -9,6 +9,9 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- remap easymotion's default prefix
+keymap("n", "<Leader>e", "<Plug>(easymotion-prefix)", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -76,7 +79,7 @@ keymap("v", "<Leader>*", ":Telescope grep_string<CR>", {})
 keymap("n", "<Leader>*", ":Telescope grep_string<CR>", {})
 
 keymap("n", "gl", ":HopLine<CR>", {})
---[[ keymap("n", ";", ":HopChar1<CR>", {}) ]]
+keymap("n", ",", ":HopWord<CR>", {})
 
 keymap("n", "<Leader>sh", ":split<CR>", {})
 keymap("n", "<Leader>sv", ":vs<CR>", {})
@@ -105,7 +108,7 @@ keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
 keymap("n", "<Leader>n", ":NvimTreeToggle<cr>", opts)
 
 -- keymap
-keymap('n', "/", "<Plug>(easymotion-sn)", opts)
+-- keymap('n', "/", "<Plug>(easymotion-sn)", opts)
 
 -- todo
 keymap("n", "<Leader>vp", ":VimuxPromptCommand<CR>", opts)
