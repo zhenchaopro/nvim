@@ -31,6 +31,7 @@ vim.cmd [[
 
   augroup _react 
     autocmd BufEnter *.js set filetype=javascriptreact
+    autocmd BufEnter *.js set syntax=typescriptreact
   augroup end
 ]]
 

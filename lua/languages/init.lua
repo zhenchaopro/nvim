@@ -47,6 +47,10 @@ require('lspconfig')['sumneko_lua'].setup {
   on_attach = on_attach,
 }
 
+require('lspconfig')['tailwindcss'].setup {
+  flags = lsp_flags,
+}
+
 require('languages.null-ls')
 
 -- require("elixir").setup()
