@@ -16,6 +16,10 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+--
+-- map leader of easymotion to <Leader>e, the default is <Leader><Leader>, 
+-- which is conflict with Telescope find_files
+keymap("n", "<Leader>e", "<Plug>(easymotion-prefix)", opts)
 
 keymap("i", "<C-g>", "<ESC>", opts)
 keymap("c", "<C-g>", "<ESC>", opts)
@@ -24,7 +28,7 @@ keymap("t", "<C-g>", "<ESC>", opts)
 -- Normal --
 keymap("n", "<leader>0", ":close<cr>", opts)
 keymap("n", "<leader>1", "<C-w>o<cr>", opts)
-keymap("n", "<leader>2", ":vs", opts)
+keymap("n", "<leader>2", ":vs<cr>", opts)
 keymap("n", "<leader>3", ":sp<cr>", opts)
 
 -- Resize with arrows
@@ -32,6 +36,8 @@ keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+keymap("n", "<C-Tab>", ":tabNex<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -76,17 +82,17 @@ keymap("v", "<Leader>*", ":Telescope grep_string<CR>", {})
 keymap("n", "<Leader>*", ":Telescope grep_string<CR>", {})
 
 keymap("n", "gl", ":HopLine<CR>", {})
---[[ keymap("n", ";", ":HopChar1<CR>", {}) ]]
+keymap("n", ",", ":HopWord<CR>", {})
 
 keymap("n", "<Leader>sh", ":split<CR>", {})
 keymap("n", "<Leader>sv", ":vs<CR>", {})
 
 keymap("n", "<Leader>,", ":lua require('telescope.builtin').buffers({ sort_mru = true })<cr>", {})
 keymap(
-	"n",
-	"<leader>.",
-	":lua require('telescope').extensions.file_browser.file_browser({cwd = vim.fn.expand('%:p:h')})<CR>",
-	{}
+  "n",
+  "<leader>.",
+  ":lua require('telescope').extensions.file_browser.file_browser({cwd = vim.fn.expand('%:p:h')})<CR>",
+  {}
 )
 keymap("n", "<Leader>sp", ":Telescope live_grep<CR>", {})
 
@@ -105,7 +111,7 @@ keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
 keymap("n", "<Leader>n", ":NvimTreeToggle<cr>", opts)
 
 -- keymap
-keymap('n', "/", "<Plug>(easymotion-sn)", opts)
+-- keymap('n', "/", "<Plug>(easymotion-sn)", opts)
 
 -- todo
 keymap("n", "<Leader>vp", ":VimuxPromptCommand<CR>", opts)
