@@ -17,12 +17,26 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
+  --[[ use "folke/neodev.nvim" ]]
+
+  -- git interation
+  use 'lewis6991/gitsigns.nvim'
+
+  -- undo tree
+  use('mbbill/undotree')
+
   -- status line
   use("nvim-lualine/lualine.nvim")
   -- which key
   use("folke/which-key.nvim")
   -- theme
   use("morhetz/gruvbox")
+  use("joshdick/onedark.vim")
+  use('tomasr/molokai')
+  use('altercation/vim-colors-solarized')
+  use('folke/tokyonight.nvim')
+
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
@@ -57,6 +71,12 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- org mode
+  use { 'nvim-orgmode/orgmode', config = function()
+    require('orgmode').setup {}
+  end
+  }
+
   -- syntax highlight
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -67,7 +87,8 @@ return require('packer').startup(function(use)
   }
 
 
-  use 'tpope/vim-fugitive'
+  -- replacw with neogit
+  --[[ use 'tpope/vim-fugitive' ]]
 
   -- completion
   use 'hrsh7th/cmp-nvim-lsp'
@@ -84,9 +105,20 @@ return require('packer').startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }) -- for formatters and linters
 
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
-  use("neovim/nvim-lspconfig")
+  use {
+    "neovim/nvim-lspconfig",
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
+    }
+  }
 
   use({
     "glepnir/lspsaga.nvim",
@@ -146,11 +178,16 @@ return require('packer').startup(function(use)
     end,
   })
 
+  --[[ use { ]]
+  --[[   'declancm/maximize.nvim', ]]
+  --[[   config = function() ]]
+  --[[     require('maximize').setup() ]]
+  --[[   end ]]
+  --[[ } ]]
+
   use {
-    'declancm/maximize.nvim',
-    config = function()
-      require('maximize').setup()
-    end
+    'declancm/windex.nvim',
+    config = function() require('windex').setup() end
   }
 
   -- use("kyazdani42/nvim-web-devicons")
@@ -195,4 +232,79 @@ return require('packer').startup(function(use)
   use("figitaki/vim-dune")
   use("idanarye/vim-merginal")
   use('rbong/vim-flog')
+
+  -- test
+  use('vim-test/vim-test')
+
+  -- wirte
+  use('davidbeckingsale/writegood.vim')
+
+  -- debug
+  use('mfussenegger/nvim-dap')
+  use {
+    'leoluz/nvim-dap-go',
+    config = function()
+      require('dap-go').setup()
+    end
+  }
+
+  -- for Golang dev
+  --[[ use('fatih/vim-go') ]]
+
+  -- chatgpt
+  --[[ use({ ]]
+  --[[   "jackMort/ChatGPT.nvim", ]]
+  --[[   config = function() ]]
+  --[[     require("chatgpt").setup({ ]]
+  --[[       -- optional configuration ]]
+  --[[     }) ]]
+  --[[   end, ]]
+  --[[   requires = { ]]
+  --[[     "MunifTanjim/nui.nvim", ]]
+  --[[     "nvim-lua/plenary.nvim", ]]
+  --[[     "nvim-telescope/telescope.nvim" ]]
+  --[[   } ]]
+  --[[ }) ]]
+
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require 'telescope-tabs'.setup {
+        -- Your custom config :^)
+      }
+    end
+  }
+
+  --[[ use('github/copilot.vim') ]]
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
+  -- highlight other uses of the word under cursor
+  use { 'RRethy/vim-illuminate' }
+
+  -- multi cusor
+  use('mg979/vim-visual-multi')
+
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+  -- better vim UI
+  use { 'stevearc/dressing.nvim' }
+
+  -- Packer
+  use({
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup({
+        -- add any options here
+      })
+    end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  })
 end)

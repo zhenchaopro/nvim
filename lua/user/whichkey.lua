@@ -80,18 +80,18 @@ local opts = {
 
 local mappings = {
   ["e"] = { "<cmd>NvimTreeFindFileToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
+  --[[ ["w"] = { "<cmd>w!<CR>", "Save" }, ]]
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
+  w = {
+    name = "Window",
+    v = { "<cmd>vsplit<cr>", "Vsplit" },
+    V = { "<cmd>vnew<cr>", "Vsplit new buffer" },
+    h = { "<cmd>sp<cr>", "Horizontal split" },
+    n = { "<cmd>new<cr>", "Horizontal New buffer" },
+    c = { "<cmd>close<cr>", "Close  window" },
   },
 
   b = {
@@ -146,16 +146,16 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 
-  t = {
-    name = "Terminal",
-    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-  },
+  --[[ t = { ]]
+  --[[   name = "Terminal", ]]
+  --[[   n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" }, ]]
+  --[[   u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" }, ]]
+  --[[   t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" }, ]]
+  --[[   p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" }, ]]
+  --[[   f = { "<cmd>ToggleTerm direction=float<cr>", "Float" }, ]]
+  --[[   h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, ]]
+  --[[   v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" }, ]]
+  --[[ }, ]]
 }
 
 which_key.setup(setup)

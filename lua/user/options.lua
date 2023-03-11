@@ -59,3 +59,8 @@ vim.g["user_emmet_settings"] = {
     extends= "jsx"
   }
 }
+
+vim.g["go_highlight_types"] = 1
+vim.g["go_highlight_functions"] = 1
+
+vim.g["copilot_proxy"] = "http://127.0.0.1:7890"

@@ -19,7 +19,9 @@ vim.g.maplocalleader = " "
 --
 -- map leader of easymotion to <Leader>e, the default is <Leader><Leader>, 
 -- which is conflict with Telescope find_files
-keymap("n", "<Leader>e", "<Plug>(easymotion-prefix)", opts)
+keymap("n", "<Leader>]", "<Plug>(easymotion-prefix)", opts)
+
+keymap("n", "<Leader>tu", ":UndotreeToggle<cr>", {})
 
 keymap("i", "<C-g>", "<ESC>", opts)
 keymap("c", "<C-g>", "<ESC>", opts)
@@ -37,7 +39,12 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
-keymap("n", "<C-Tab>", ":tabNex<CR>", opts)
+-- tab navigation
+keymap("n", "<leader>tn", ":tabnew<CR>", {})
+keymap("n", "<leader>tt", ":tabNext<CR>", {})
+keymap("n", "<leader>tp", ":tabprevious<CR>", {})
+keymap("n", "<leader>tc", ":tabclose<CR>", {})
+
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -68,7 +75,7 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-keymap("n", "<Leader>m", "<Cmd>lua require('maximize').toggle()<CR>", opts)
+keymap("n", "<Leader>m", "<Cmd>lua require('windex').toggle_maximize()<CR>", opts)
 
 
 keymap("n", "<Leader>pp", ":Telescope projects<CR>", opts)
@@ -81,13 +88,15 @@ keymap("n", "<Leader>fp", ":lua require('telescope.builtin').find_files({ cwd = 
 keymap("v", "<Leader>*", ":Telescope grep_string<CR>", {})
 keymap("n", "<Leader>*", ":Telescope grep_string<CR>", {})
 
-keymap("n", "gl", ":HopLine<CR>", {})
+keymap("n", "gl", "$", {}) -- goto line end 
+keymap("n", "gh", "0", {}) -- goto line start
 keymap("n", ",", ":HopWord<CR>", {})
 
 keymap("n", "<Leader>sh", ":split<CR>", {})
 keymap("n", "<Leader>sv", ":vs<CR>", {})
 
 keymap("n", "<Leader>,", ":lua require('telescope.builtin').buffers({ sort_mru = true })<cr>", {})
+
 keymap(
   "n",
   "<leader>.",
@@ -102,7 +111,7 @@ keymap("n", "<Leader>sp", ":Telescope live_grep<CR>", {})
 keymap("n", "<D-v>", '"+p', {})
 keymap("i", "<D-v>", "<C-r>+", {})
 
-keymap("n", "<leader>gg", ":Git<cr>", opts)
+keymap("n", "<leader>gg", ":Neogit<cr>", opts)
 -- close current buffer
 keymap("n", "<leader>bd", ":bp<bar>sp<bar>bn<bar>bd<cr>", opts)
 keymap("n", "<leader>ss", ":Telescope current_buffer_fuzzy_find<cr>", opts)

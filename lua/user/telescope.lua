@@ -10,8 +10,9 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
-    layout_strategy = "flex",
-    preview = false,
+    --[[ layout_strategy = "bottom_pane", ]]
+    -- layout_strategy = "flex",
+    -- preview = true,
     prompt_prefix = "> ",
     selection_caret = " ",
     path_display = { "smart" },

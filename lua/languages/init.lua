@@ -42,7 +42,7 @@ require('lspconfig')['gopls'].setup {
   flags = lsp_flags,
 }
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['lua_ls'].setup {
   flags = lsp_flags,
   on_attach = on_attach,
 }
@@ -51,6 +51,10 @@ require('lspconfig')['tailwindcss'].setup {
   flags = lsp_flags,
 }
 
-require('languages.null-ls')
+require('lspconfig')['elixirls'].setup {
+  cmd = { "/Users/zhenchao/.bin/language_server.sh" };
+  flags = lsp_flags,
+  on_attach = on_attach,
+}
 
--- require("elixir").setup()
+require('languages.null-ls')
