@@ -77,6 +77,17 @@ return require('packer').startup(function(use)
   end
   }
 
+  -- auto save
+  use({
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
+        -- your config goes here
+        -- or just leave it empty :)
+      }
+    end,
+  })
+
   -- syntax highlight
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -88,7 +99,7 @@ return require('packer').startup(function(use)
 
 
   -- replacw with neogit
-  --[[ use 'tpope/vim-fugitive' ]]
+  use 'tpope/vim-fugitive'
 
   -- completion
   use 'hrsh7th/cmp-nvim-lsp'
@@ -97,7 +108,11 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
   -- for snippets
-  use({ "L3MON4D3/LuaSnip", tag = "1.1.0" }) --snippet engine
+  use({
+    "L3MON4D3/LuaSnip",
+    config = function()
+    end
+  }) --snippet engine
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
@@ -178,16 +193,11 @@ return require('packer').startup(function(use)
     end,
   })
 
-  --[[ use { ]]
-  --[[   'declancm/maximize.nvim', ]]
-  --[[   config = function() ]]
-  --[[     require('maximize').setup() ]]
-  --[[   end ]]
-  --[[ } ]]
-
   use {
-    'declancm/windex.nvim',
-    config = function() require('windex').setup() end
+    'declancm/maximize.nvim',
+    config = function()
+      require('maximize').setup()
+    end
   }
 
   -- use("kyazdani42/nvim-web-devicons")
@@ -251,20 +261,20 @@ return require('packer').startup(function(use)
   -- for Golang dev
   --[[ use('fatih/vim-go') ]]
 
-  -- chatgpt
-  --[[ use({ ]]
-  --[[   "jackMort/ChatGPT.nvim", ]]
-  --[[   config = function() ]]
-  --[[     require("chatgpt").setup({ ]]
-  --[[       -- optional configuration ]]
-  --[[     }) ]]
-  --[[   end, ]]
-  --[[   requires = { ]]
-  --[[     "MunifTanjim/nui.nvim", ]]
-  --[[     "nvim-lua/plenary.nvim", ]]
-  --[[     "nvim-telescope/telescope.nvim" ]]
-  --[[   } ]]
-  --[[ }) ]]
+  -- Packer
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
 
   use {
     'LukasPietzschmann/telescope-tabs',
@@ -277,7 +287,7 @@ return require('packer').startup(function(use)
   }
 
   --[[ use('github/copilot.vim') ]]
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  --[[ use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' } ]]
 
   -- highlight other uses of the word under cursor
   use { 'RRethy/vim-illuminate' }
@@ -287,24 +297,28 @@ return require('packer').startup(function(use)
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
-  -- better vim UI
-  use { 'stevearc/dressing.nvim' }
+  use {
+    'nvim-pack/nvim-spectre',
+    config = function()
+      require('spectre').setup()
+    end
+  }
 
   -- Packer
-  use({
-    "folke/noice.nvim",
-    config = function()
-      require("noice").setup({
-        -- add any options here
-      })
-    end,
-    requires = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  })
+  --[[ use({ ]]
+  --[[   "folke/noice.nvim", ]]
+  --[[   config = function() ]]
+  --[[     require("noice").setup({ ]]
+  --[[       -- add any options here ]]
+  --[[     }) ]]
+  --[[   end, ]]
+  --[[   requires = { ]]
+  --[[     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries ]]
+  --[[     "MunifTanjim/nui.nvim", ]]
+  --[[     -- OPTIONAL: ]]
+  --[[     --   `nvim-notify` is only needed, if you want to use the notification view. ]]
+  --[[     --   If not available, we use `mini` as the fallback ]]
+  --[[     "rcarriga/nvim-notify", ]]
+  --[[   } ]]
+  --[[ }) ]]
 end)

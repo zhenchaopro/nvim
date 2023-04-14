@@ -75,7 +75,6 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-keymap("n", "<Leader>m", "<Cmd>lua require('windex').toggle_maximize()<CR>", opts)
 
 
 keymap("n", "<Leader>pp", ":Telescope projects<CR>", opts)
@@ -111,12 +110,12 @@ keymap("n", "<Leader>sp", ":Telescope live_grep<CR>", {})
 keymap("n", "<D-v>", '"+p', {})
 keymap("i", "<D-v>", "<C-r>+", {})
 
-keymap("n", "<leader>gg", ":Neogit<cr>", opts)
+keymap("n", "<leader>gg", ":G<cr>", opts)
 -- close current buffer
 keymap("n", "<leader>bd", ":bp<bar>sp<bar>bn<bar>bd<cr>", opts)
 keymap("n", "<leader>ss", ":Telescope current_buffer_fuzzy_find<cr>", opts)
 
-keymap("n", "<Leader>;", ":Telescope commands<cr>", opts)
+keymap("n", "<Leader><cr>", ":Telescope commands<cr>", opts)
 keymap("n", "<Leader>n", ":NvimTreeToggle<cr>", opts)
 
 -- keymap

@@ -48,12 +48,15 @@ local kind_icons = {
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
+  completion = {
+    completeopt = "menu,menuone,noinsert",
+  },
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	mapping = {
+	mapping = cmp.mapping.preset.insert({
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if luasnip.expandable then
 				luasnip.expand()
@@ -74,22 +77,6 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		--[[ ["<Tab>"] = cmp.mapping(function(fallback) ]]
-		--[[ 	-- if luasnip.expandable() then ]]
-		--[[ 	-- 	luasnip.expand() ]]
-		--[[ 	-- elseif cmp.visible() then ]]
-		--[[ 	-- 	cmp.select_next_item() ]]
-		--[[ 	if luasnip.expand_or_jumpable() then ]]
-		--[[ 		luasnip.expand_or_jump() ]]
-		--[[ 	elseif check_backspace() then ]]
-		--[[ 		fallback() ]]
-		--[[ 	else ]]
-		--[[ 		fallback() ]]
-		--[[ 	end ]]
-		--[[ end, { ]]
-		--[[ 	"i", ]]
-		--[[ 	"s", ]]
-		--[[ }), ]]
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -102,7 +89,7 @@ cmp.setup({
 			"i",
 			"s",
 		}),
-	},
+  }),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -134,7 +121,8 @@ cmp.setup({
     },
   },
 	experimental = {
-		ghost_text = false,
-		native_menu = false,
+		ghost_text =  {
+      hl_group = "LspCodeLens"
+    }
 	},
 })
